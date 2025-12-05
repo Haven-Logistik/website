@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galerie - Haven Logistik</title>
+    <meta name="description" content="Galerie — Eindrücke unserer Touren, Konvois und Community-Events bei Haven Logistik.">
+    <meta name="keywords" content="Haven Logistik, Galerie, ETS2, Konvoi, Screenshots">
+    <link rel="canonical" href="https://haven-logistik.de/gallery.html">
+    <meta property="og:title" content="Galerie — Haven Logistik">
+    <meta property="og:description" content="Eindrücke aus unseren Touren und Konvois. Schau dir unsere Screenshots an.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://haven-logistik.de/gallery.html">
+    <meta property="og:image" content="https://haven-logistik.de/static/images/background.webp">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Galerie — Haven Logistik">
+    <meta name="twitter:description" content="Screenshots und Eindrücke unserer Touren und Community-Events.">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Haven Logistik</h1>
+            <p class="subtitle">Virtuelle Spedition seit 11.05.2020</p>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home & Team</a></li>
+                    <li><a href="ueber-uns.html">Über Uns</a></li>
+                    <li><a href="links.html">Links</a></li>
+                    <li><a href="gallery.html" class="active">Galerie</a></li>
+                    <li><a href="fahrer.html">Fahrer</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <main>
+            <section>
+                <h2>Galerie</h2>
+                <p style="margin-bottom: 20px; color: #a0a0a0;">Einblicke in unsere Touren und Konvois.</p>
+                
+                <div class="gallery-grid">
+                    <!-- Placeholder Images - Replace src with actual image paths -->
+                    <div class="gallery-item">
+                        <img src="/static/images/bild1.webp" alt="Galerie Bild 1">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="/static/images/bild2.webp" alt="Galerie Bild 2">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="/static/images/bild3.webp" alt="Galerie Bild 3">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="/static/images/bild4.webp" alt="Galerie Bild 4">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="/static/images/bild5.webp" alt="Galerie Bild 5">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="/static/images/bild6.webp" alt="Galerie Bild 6">
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>&copy; 2025 Haven Logistik. Alle Rechte vorbehalten.</p>
+        </footer>
+    </div>
+
+    <!-- Lightbox -->
+    <div id="lightbox">
+        <span class="close-btn">&times;</span>
+        <img class="lightbox-content" id="lightbox-img">
+        <div class="lightbox-info" id="lightbox-info">
+            <!-- Info will be populated by JS -->
+        </div>
+    </div>
+
+    <script>
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+        const lightboxInfo = document.getElementById('lightbox-info');
+        const closeBtn = document.querySelector('.close-btn');
+        const galleryItems = document.querySelectorAll('.gallery-item img');
+
+        galleryItems.forEach(item => {
+            item.addEventListener('click', function() {
+                lightbox.classList.add('active');
+                lightboxImg.src = this.src;
+
+                // Show resolution only
+                lightboxInfo.innerHTML = "Lade Auflösung...";
+
+                const img = new Image();
+                img.src = this.src;
+                img.onload = function() {
+                    lightboxInfo.innerHTML = `Auflösung: ${this.naturalWidth}x${this.naturalHeight}px`;
+                };
+            });
+        });
+
+        closeBtn.addEventListener('click', () => {
+            lightbox.classList.remove('active');
+        });
+
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) {
+                lightbox.classList.remove('active');
+            }
+        });
+    </script>
+</body>
+</html>
